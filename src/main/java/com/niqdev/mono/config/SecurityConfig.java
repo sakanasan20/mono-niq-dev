@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authz -> authz
                 // 允許所有用戶訪問登入頁面和靜態資源
-                .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/login", "/forgot-password", "/reset-password", "/css/**", "/js/**", "/images/**").permitAll()
                 // 其他所有請求都需要認證
                 .anyRequest().authenticated()
             )
