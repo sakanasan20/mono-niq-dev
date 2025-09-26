@@ -36,6 +36,13 @@ public class SecurityConfig {
                 .failureUrl("/login?error")    // 登入失敗後重定向到登入頁面並顯示錯誤
                 .permitAll()                   // 允許所有用戶訪問登入頁面
             )
+            // 記住我（基於雜湊 token）
+            .rememberMe(remember -> remember
+                .key("mono-niq-dev-remember-me-key")
+                .rememberMeParameter("remember-me")
+                .rememberMeCookieName("REMEMBER_ME")
+                .tokenValiditySeconds(60 * 60 * 24 * 14) // 14 天
+            )
             // 配置登出
             .logout(logout -> logout
                 .logoutSuccessUrl("/login?logout")  // 登出成功後重定向到登入頁面
