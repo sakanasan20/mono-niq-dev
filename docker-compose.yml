@@ -1,0 +1,16 @@
+services:
+  mono-niq-dev:
+    build: .
+    container_name: mono-niq-dev
+    environment:
+      - VIRTUAL_HOST=mono.niq-dev.com
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=mono.niq-dev.com
+      - LETSENCRYPT_EMAIL=sakanasan20@gmail.com
+    networks:
+      - nginx-proxy
+    restart: always
+
+networks:
+  nginx-proxy:
+    external: true
