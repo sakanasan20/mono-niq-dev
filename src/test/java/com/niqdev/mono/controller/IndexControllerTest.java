@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.niqdev.mono.config.SecurityConfig;
+import com.niqdev.mono.config.TestSecurityConfig;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 使用 @WebMvcTest 註解來測試 Web 層
  */
 @WebMvcTest(IndexController.class)
-@Import(SecurityConfig.class)
+@Import(TestSecurityConfig.class)
 class IndexControllerTest {
 
     @Autowired

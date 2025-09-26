@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.niqdev.mono.config.SecurityConfig;
+import com.niqdev.mono.config.TestSecurityConfig;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 測試登入相關的功能
  */
 @WebMvcTest(LoginController.class)
-@Import(SecurityConfig.class)
+@Import(TestSecurityConfig.class)
 class LoginControllerTest {
 
     @Autowired
