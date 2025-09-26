@@ -1,10 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<title>NIQ-DEV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIQ-DEV</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e1e5e9;
+        }
+        
+        .header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-name {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .logout-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .logout-button:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .welcome-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #667eea;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .role-badge.admin {
+            background-color: #dc3545;
+        }
+        
+        .role-badge.user {
+            background-color: #28a745;
+        }
+    </style>
 </head>
 <body>
-	<h1>Mono</h1>
+    <div class="container">
+        <div class="header">
+            <h1>NIQ-DEV</h1>
+            <div class="user-info">
+                <span class="user-name">
+                    歡迎，<span sec:authentication="name"></span>
+                    <span sec:authorize="hasRole('ADMIN')" class="role-badge admin">管理員</span>
+                    <span sec:authorize="hasRole('USER')" class="role-badge user">用戶</span>
+                </span>
+                <a href="/logout" class="logout-button">登出</a>
+            </div>
+        </div>
+        
+        <div class="welcome-section">
+            <h2>歡迎使用 NIQ-DEV 系統</h2>
+            <p>
+                您已成功登入系統。這是一個基本的 Spring Security 認證示例，
+                展示了如何實現用戶登入、角色管理和安全訪問控制。
+            </p>
+            <p sec:authorize="hasRole('ADMIN')">
+                <strong>管理員權限：</strong> 您擁有管理員權限，可以訪問所有功能。
+            </p>
+            <p sec:authorize="hasRole('USER')">
+                <strong>一般用戶權限：</strong> 您擁有一般用戶權限。
+            </p>
+        </div>
+    </div>
 </body>
 </html>
